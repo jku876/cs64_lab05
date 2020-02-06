@@ -14,8 +14,8 @@
 printA:
 	#initialize iterator
 	li $t0, 0
-	lw $t1, ($a1)
 	move $t2, $a0
+	move $t1, $a1
 loop:
 	#for loop
 	beq $t0, $t1, return
@@ -40,7 +40,7 @@ main:
 	li $v0, 4
 	la $a0, prompt
 	syscall
-	la $a1, size
+	li $a1, 10
 	la $a0, myArray
 	jal printA
 
