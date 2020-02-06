@@ -14,14 +14,15 @@
 printA:
 	#initialize iterator
 	li $t0, 0
-	move $t1, $a0
+	move $t1, $a1
+	move $t2, $a0
 loop:
 	#for loop
 	beq $t0, $t1, return
-	lw $t2, 0($a1)
-	addi $a1, $a1, 4
+	lw $t3, 0($t2)
+	addi $t2, $t2, 4
 	li $v0, 1
-	move $a0, $t2
+	move $a0, $t3
 	syscall
 	li $v0, 4
 	la $a0, newLine
@@ -36,8 +37,8 @@ main:
 	li $v0, 4
 	la $a0, prompt
 	syscall
-	li $a0, 10
-	la $a1, myArray
+	li $a1, 10
+	la $a0, myArray
 	jal printA
 
 exit:
