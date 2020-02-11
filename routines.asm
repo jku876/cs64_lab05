@@ -14,8 +14,10 @@ routineB:
     jr $ra
 
 routineA:
-    addi $sp, $sp, -4
+    addi $sp, $sp, -12
     sw $ra, 0($sp)
+    sw $s0, 4($sp)
+    sw $s1, 8($sp)
     
     li $t0, 2
     mult $a0, $t0
@@ -28,9 +30,10 @@ routineA:
     add $s1, $s0, $v0
     addi $a0, $s1, -1
     jal routineB
-    move $s0, $v0
     lw $ra, 0($sp)
-    addi $sp, $sp, 4
+    lw $s0, 4($sp)
+    lw $s1, 8($sp)
+    addi $sp, $sp, 12
     jr $ra
 
 main:
